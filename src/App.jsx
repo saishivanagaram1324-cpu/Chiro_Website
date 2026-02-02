@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Navbar, Nav, Modal, Form } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu } from 'lucide-react';
+import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2 } from 'lucide-react';
 import DotGrid from './components/DotGrid';
+import { supabase } from './lib/supabase';
 
 const App = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState('South Mumbai');
     const [bookingSuccess, setBookingSuccess] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
+
+    // Form state
+    const [formData, setFormData] = useState({
+        full_name: '',
+        phone: '',
+        email: '',
+        preferred_date: '',
+        notes: ''
+    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,13 +34,48 @@ const App = () => {
         setSelectedLocation(location);
         setShowModal(true);
         setBookingSuccess(false);
+        setSubmitError(null);
+        setFormData({
+            full_name: '',
+            phone: '',
+            email: '',
+            preferred_date: '',
+            notes: ''
+        });
     };
 
-    const handleBookingSubmit = (e) => {
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleBookingSubmit = async (e) => {
         e.preventDefault();
-        setTimeout(() => {
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const { error } = await supabase
+                .from('appointments')
+                .insert([{
+                    full_name: formData.full_name,
+                    phone: formData.phone,
+                    email: formData.email || null,
+                    preferred_date: formData.preferred_date || null,
+                    location: selectedLocation,
+                    notes: formData.notes || null,
+                    status: 'pending'
+                }]);
+
+            if (error) throw error;
+
             setBookingSuccess(true);
-        }, 1500);
+        } catch (error) {
+            console.error('Booking error:', error);
+            setSubmitError('Failed to submit booking. Please try again or call us directly.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const navLinks = [
@@ -305,9 +352,86 @@ const App = () => {
                             <Modal.Body className="p-8">
                                 <Form onSubmit={handleBookingSubmit}>
                                     <Row className="g-4">
-                                        <Col md={6}><Form.Label className="text-xs font-bold uppercase">FullName</Form.Label><Form.Control required className="rounded-none py-3 border-gray-200" placeholder="John Doe" /></Col>
-                                        <Col md={6}><Form.Label className="text-xs font-bold uppercase">Phone</Form.Label><Form.Control required className="rounded-none py-3 border-gray-200" placeholder="+91" /></Col>
-                                        <Col xs={12} className="mt-8"><button className="w-full btn-default py-4">Request Consultation Slot</button></Col>
+                                        <Col md={6}>
+                                            <Form.Label className="text-xs font-bold uppercase">Full Name *</Form.Label>
+                                            <Form.Control
+                                                name="full_name"
+                                                value={formData.full_name}
+                                                onChange={handleInputChange}
+                                                required
+                                                className="rounded-none py-3 border-gray-200"
+                                                placeholder="John Doe"
+                                            />
+                                        </Col>
+                                        <Col md={6}>
+                                            <Form.Label className="text-xs font-bold uppercase">Phone *</Form.Label>
+                                            <Form.Control
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleInputChange}
+                                                required
+                                                type="tel"
+                                                className="rounded-none py-3 border-gray-200"
+                                                placeholder="+91 98XXX XXXXX"
+                                            />
+                                        </Col>
+                                        <Col md={6}>
+                                            <Form.Label className="text-xs font-bold uppercase">Email</Form.Label>
+                                            <Form.Control
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleInputChange}
+                                                type="email"
+                                                className="rounded-none py-3 border-gray-200"
+                                                placeholder="your@email.com"
+                                            />
+                                        </Col>
+                                        <Col md={6}>
+                                            <Form.Label className="text-xs font-bold uppercase">Preferred Date</Form.Label>
+                                            <Form.Control
+                                                name="preferred_date"
+                                                value={formData.preferred_date}
+                                                onChange={handleInputChange}
+                                                type="date"
+                                                className="rounded-none py-3 border-gray-200"
+                                                min={new Date().toISOString().split('T')[0]}
+                                            />
+                                        </Col>
+                                        <Col xs={12}>
+                                            <Form.Label className="text-xs font-bold uppercase">Additional Notes</Form.Label>
+                                            <Form.Control
+                                                name="notes"
+                                                value={formData.notes}
+                                                onChange={handleInputChange}
+                                                as="textarea"
+                                                rows={3}
+                                                className="rounded-none py-3 border-gray-200"
+                                                placeholder="Describe your condition or any specific concerns..."
+                                            />
+                                        </Col>
+                                        {submitError && (
+                                            <Col xs={12}>
+                                                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+                                                    {submitError}
+                                                </div>
+                                            </Col>
+                                        )}
+                                        <Col xs={12} className="mt-4">
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-full btn-default py-4 flex items-center justify-center gap-2"
+                                            >
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <Loader2 className="animate-spin" size={20} />
+                                                        Submitting...
+                                                    </>
+                                                ) : (
+                                                    'Request Consultation Slot'
+                                                )}
+                                            </button>
+                                        </Col>
                                     </Row>
                                 </Form>
                             </Modal.Body>
