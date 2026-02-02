@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Navbar, Nav, Modal, Form } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2, Star, Quote } from 'lucide-react';
 import DotGrid from './components/DotGrid';
 import { supabase } from './lib/supabase';
 
@@ -82,6 +82,7 @@ const App = () => {
         { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
         { name: 'Treatments', href: '#treatments' },
+        { name: 'Testimonials', href: '#testimonials' },
         { name: 'Locations', href: '#locations' },
     ];
 
@@ -273,6 +274,56 @@ const App = () => {
                                             <div className="text-brand-accent group-hover:text-brand-accent mb-6 transition-colors">{item.icon}</div>
                                             <h3 className="font-display mb-4 text-brand-primary group-hover:text-white transition-colors">{item.title}</h3>
                                             <p className="text-gray-600 group-hover:text-white/80 transition-colors">{item.desc}</p>
+                                        </motion.div>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Container>
+                    </section>
+                    <section id="testimonials" className="py-24 bg-white overflow-hidden">
+                        <Container>
+                            <div className="text-center mb-16">
+                                <motion.h2 {...fadeInUp} className="display-5 font-display text-brand-primary">Patient Experiences</motion.h2>
+                                <div className="h-1 w-20 bg-brand-accent mx-auto mt-4"></div>
+                            </div>
+                            <Row className="g-4">
+                                {[
+                                    {
+                                        name: "Rahul Sharma",
+                                        role: "Creative Director",
+                                        content: "Dr. Vaibbhav is truly exceptional. His knowledge of spinal mechanics helped me recover from a chronic back issue in weeks that I had been struggling with for years.",
+                                        rating: 5
+                                    },
+                                    {
+                                        name: "Anita Kapoor",
+                                        role: "Yoga Instructor",
+                                        content: "The most professional chiropractic care I've experienced in Mumbai. The precision in his technique is unmatched, and the South Mumbai clinic is state-of-the-art.",
+                                        rating: 5
+                                    },
+                                    {
+                                        name: "Vikram Malhotra",
+                                        role: "Professional Athlete",
+                                        content: "I've been visiting for sports injury recovery, and the results have been remarkable. Highly recommended for anyone looking for elite level performance enhancement.",
+                                        rating: 5
+                                    }
+                                ].map((testimonial, idx) => (
+                                    <Col key={idx} md={4}>
+                                        <motion.div
+                                            {...fadeInUp}
+                                            whileHover={{ y: -5 }}
+                                            className="p-8 border border-gray-100 bg-gray-50/50 rounded-2xl h-100 relative group"
+                                        >
+                                            <Quote className="absolute top-6 right-6 text-brand-accent/10 group-hover:text-brand-accent/20 transition-colors" size={48} />
+                                            <div className="flex gap-1 mb-6">
+                                                {[...Array(testimonial.rating)].map((_, i) => (
+                                                    <Star key={i} size={16} className="fill-brand-accent text-brand-accent" />
+                                                ))}
+                                            </div>
+                                            <p className="text-gray-700 mb-8 italic leading-relaxed">"{testimonial.content}"</p>
+                                            <div className="mt-auto">
+                                                <h5 className="font-display text-brand-primary mb-1">{testimonial.name}</h5>
+                                                <p className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-0">{testimonial.role}</p>
+                                            </div>
                                         </motion.div>
                                     </Col>
                                 ))}
