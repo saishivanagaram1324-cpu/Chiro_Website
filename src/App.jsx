@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2, Star, Quote } from 'lucide-react';
 import DotGrid from './components/DotGrid';
 import { supabase } from './lib/supabase';
+import AssistantHelpdesk from './components/AssistantHelpdesk';
 
 const App = () => {
     const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,17 @@ const App = () => {
     }, []);
 
     const openBooking = (location) => {
-        setSelectedLocation(location);
+        // Map general or clinic names to the dropdown values
+        if (location === 'General') {
+            setSelectedLocation('');
+        } else if (location === 'South Mumbai') {
+            setSelectedLocation('South Mumbai Center');
+        } else if (location === 'Andheri') {
+            setSelectedLocation('Andheri West Center');
+        } else {
+            setSelectedLocation(location);
+        }
+
         setShowModal(true);
         setBookingSuccess(false);
         setSubmitError(null);
@@ -389,6 +400,8 @@ const App = () => {
                         </div>
                     </Container>
                 </footer>
+
+                <AssistantHelpdesk onBook={() => openBooking('General')} />
             </div>
 
             <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg" contentClassName="rounded-none border-0 overflow-hidden shadow-2xl">
@@ -447,6 +460,19 @@ const App = () => {
                                                 className="rounded-none py-3 border-gray-200"
                                                 min={new Date().toISOString().split('T')[0]}
                                             />
+                                        </Col>
+                                        <Col md={6}>
+                                            <Form.Label className="text-xs font-bold uppercase">Clinic Location *</Form.Label>
+                                            <Form.Select
+                                                value={selectedLocation}
+                                                onChange={(e) => setSelectedLocation(e.target.value)}
+                                                required
+                                                className="rounded-none py-3 border-gray-200"
+                                            >
+                                                <option value="" disabled>Select a location</option>
+                                                <option value="South Mumbai Center">South Mumbai Center</option>
+                                                <option value="Andheri West Center">Andheri West Center</option>
+                                            </Form.Select>
                                         </Col>
                                         <Col xs={12}>
                                             <Form.Label className="text-xs font-bold uppercase">Additional Notes</Form.Label>
