@@ -100,7 +100,7 @@ const App = () => {
                     <Container>
                         <div className="d-flex justify-content-between align-items-center text-sm">
                             <div className="d-flex gap-4">
-                                <span className="d-flex align-items-center gap-2"><Phone size={14} className="text-brand-accent" /> +91 98XXX XXXXX</span>
+                                <span className="d-flex align-items-center gap-2"><Phone size={14} className="text-brand-accent" /> +91 99203 27166</span>
                                 <span className="d-flex align-items-center gap-2"><Mail size={14} className="text-brand-accent" /> info@drvaibhavchiro.com</span>
                             </div>
                             <div className="bg-brand-accent text-brand-primary px-3 py-1 fw-bold text-xs">
@@ -124,7 +124,7 @@ const App = () => {
                                 <path d="M12 18L10 20.5V22H14V20.5L12 18Z" fill="#7fb069" />
                                 <circle cx="12" cy="12" r="10" stroke="#1e4d3a" strokeWidth="1" />
                             </svg>
-                            <span className="font-display font-bold text-brand-primary tracking-tighter text-2xl">DR. VAIBHAV</span>
+                            <span className="font-display font-bold text-brand-primary tracking-tighter text-2xl">DR. VAIBBHAV GURAY</span>
                         </Navbar.Brand>
 
                         <Navbar.Toggle aria-controls="navbar-nav" className="border-0 shadow-none">
@@ -160,7 +160,7 @@ const App = () => {
                         <div className="absolute inset-0 bg-[#f9fbf9]/40 z-0">
                             <img
                                 src="/images/dr-vaibbhav-guray-andheri-west-mumbai-chiropractic-doctors-5tpdkl85c4.avif"
-                                alt="Dr. Vaibhav Practice"
+                                alt="Dr. Vaibbhav Guray Practice"
                                 className="w-full h-full object-cover opacity-20"
                             />
                             {/* DotGrid is ONLY here now */}
@@ -189,7 +189,7 @@ const App = () => {
                                             <span className="text-brand-accent underline decoration-brand-primary/10 underline-offset-8">in Mumbai</span>
                                         </h1>
                                         <p className="lead mb-8 text-gray-700 max-w-xl">
-                                            Experience precision chiropractic adjustments by Dr. Vaibhav,
+                                            Experience precision chiropractic adjustments by Dr. Vaibbhav Guray,
                                             globally trained to provide non-invasive recovery and elite performance enhancement.
                                         </p>
                                         <div className="d-flex flex-wrap gap-4">
@@ -214,8 +214,8 @@ const App = () => {
                                     <motion.div {...fadeInUp} className="relative">
                                         <div className="relative z-10 overflow-hidden rounded-sm shadow-2xl">
                                             <img
-                                                src="/images/vaibbhav-guray.jpg"
-                                                alt="Dr. Vaibhav"
+                                                src="/images/Dr.Vaibbhav Pfp.avif"
+                                                alt="Dr. Vaibbhav Guray"
                                                 className="img-fluid w-full"
                                             />
                                         </div>
@@ -230,7 +230,7 @@ const App = () => {
                                             "My mission is to optimize the human frame through scientific precision."
                                         </p>
                                         <p className="mb-8 text-gray-600 leading-relaxed">
-                                            Dr. Vaibhav integrates international chiropractic standards (Gonstead & Diversified) with deep analytical insight.
+                                            Dr. Vaibbhav Guray integrates international chiropractic standards (Gonstead & Diversified) with deep analytical insight.
                                         </p>
                                         <Row className="g-4">
                                             {[
@@ -318,14 +318,14 @@ const App = () => {
                     <Container>
                         <Row className="g-5">
                             <Col lg={4}>
-                                <h2 className="font-display text-white font-bold text-3xl mb-6">DR. VAIBHAV</h2>
+                                <h2 className="font-display text-white font-bold text-3xl mb-6">DR. VAIBBHAV GURAY</h2>
                                 <p className="mb-8 leading-relaxed">Globally trained expertise delivering international standards of chiropractic care.</p>
                             </Col>
                             <Col lg={3}>
                                 <h5 className="text-white font-display mb-6">Contact</h5>
                                 <div className="flex flex-col gap-4 text-sm">
                                     <p className="m-0 flex items-center gap-3"><Mail size={16} /> info@drvaibhavchiro.com</p>
-                                    <p className="m-0 flex items-center gap-3"><Phone size={16} /> +91 98XXX XXXXX</p>
+                                    <p className="m-0 flex items-center gap-3"><Phone size={16} /> +91 99203 27166</p>
                                 </div>
                             </Col>
                             <Col lg={5}>
@@ -334,7 +334,7 @@ const App = () => {
                             </Col>
                         </Row>
                         <div className="text-center mt-5 pt-4 border-top border-white/10 small">
-                            <p>&copy; 2026 Dr. Vaibhav Chiropractic Excellence.</p>
+                            <p>&copy; 2026 Dr. Vaibbhav Guray Chiropractic Excellence.</p>
                         </div>
                     </Container>
                 </footer>
@@ -372,7 +372,7 @@ const App = () => {
                                                 required
                                                 type="tel"
                                                 className="rounded-none py-3 border-gray-200"
-                                                placeholder="+91 98XXX XXXXX"
+                                                placeholder="+91 99203 27166"
                                             />
                                         </Col>
                                         <Col md={6}>
