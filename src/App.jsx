@@ -5,6 +5,8 @@ import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loade
 import DotGrid from './components/DotGrid';
 import { supabase } from './lib/supabase';
 import AssistantHelpdesk from './components/AssistantHelpdesk';
+import TestimonialCarousel from './components/TestimonialCarousel';
+
 
 const App = () => {
     const [showModal, setShowModal] = useState(false);
@@ -105,7 +107,7 @@ const App = () => {
     };
 
     return (
-        <div className="relative min-h-screen bg-[#f9fbf9]">
+        <div className="relative min-h-screen bg-brand-offwhite text-brand-slate">
             <div className="relative z-10">
                 {/* Topbar */}
                 <div className="bg-brand-primary text-white py-2 d-none d-md-block border-bottom border-brand-accent">
@@ -126,15 +128,15 @@ const App = () => {
                 <Navbar
                     expand="lg"
                     sticky="top"
-                    className={`transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}
+                    className={`transition-all duration-300 ${scrolled ? 'bg-brand-offwhite/95 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}
                 >
                     <Container>
                         <Navbar.Brand href="#home" className="d-flex align-items-center">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" className="me-2">
-                                <path d="M12 2L10 4.5V7.5L12 10L14 7.5V4.5L12 2Z" fill="#7fb069" />
-                                <path d="M12 10L10 12.5V15.5L12 18L14 15.5V12.5L12 10Z" fill="#7fb069" />
-                                <path d="M12 18L10 20.5V22H14V20.5L12 18Z" fill="#7fb069" />
-                                <circle cx="12" cy="12" r="10" stroke="#1e4d3a" strokeWidth="1" />
+                                <path d="M12 2L10 4.5V7.5L12 10L14 7.5V4.5L12 2Z" fill="#9CAF88" />
+                                <path d="M12 10L10 12.5V15.5L12 18L14 15.5V12.5L12 10Z" fill="#9CAF88" />
+                                <path d="M12 18L10 20.5V22H14V20.5L12 18Z" fill="#9CAF88" />
+                                <circle cx="12" cy="12" r="10" stroke="#2F3A36" strokeWidth="1" />
                             </svg>
                             <span className="font-display font-bold text-brand-primary tracking-tighter text-2xl">DR. VAIBBHAV GURAY</span>
                         </Navbar.Brand>
@@ -169,7 +171,7 @@ const App = () => {
                 <main>
                     {/* Hero Section - The "Grey Area" with DotGrid */}
                     <section id="home" className="relative h-[85vh] flex items-center overflow-hidden">
-                        <div className="absolute inset-0 bg-[#f9fbf9]/40 z-0">
+                        <div className="absolute inset-0 bg-brand-offwhite/40 z-0">
                             <img
                                 src="/images/dr-vaibbhav-guray-andheri-west-mumbai-chiropractic-doctors-5tpdkl85c4.avif"
                                 alt="Dr. Vaibbhav Guray Practice"
@@ -180,8 +182,8 @@ const App = () => {
                                 <DotGrid
                                     dotSize={3}
                                     gap={25}
-                                    baseColor="#d0e0d0"
-                                    activeColor="#1e4d3a"
+                                    baseColor="#AEBEC0"
+                                    activeColor="#9CAF88"
                                     proximity={150}
                                     shockRadius={300}
                                 />
@@ -219,7 +221,7 @@ const App = () => {
                     </section>
 
                     {/* Rest of the sections without DotGrid background */}
-                    <section id="about" className="py-24 bg-white">
+                    <section id="about" className="py-24 bg-brand-offwhite">
                         <Container>
                             <Row className="align-items-center">
                                 <Col lg={5} className="mb-12 mb-lg-0">
@@ -264,7 +266,7 @@ const App = () => {
                         </Container>
                     </section>
 
-                    <section id="treatments" className="py-24 bg-[#eff4ef] text-brand-primary overflow-hidden">
+                    <section id="treatments" className="py-24 bg-brand-sand/30 text-brand-primary overflow-hidden">
                         <Container>
                             <div className="text-center mb-16">
                                 <motion.h2 {...fadeInUp} className="display-5 font-display">Specialized Treatments</motion.h2>
@@ -280,73 +282,33 @@ const App = () => {
                                         <motion.div
                                             {...fadeInUp}
                                             whileHover={{ y: -10 }}
-                                            className="p-10 border border-brand-primary/5 bg-white h-100 transition-all duration-300 hover:bg-brand-primary group rounded-xl shadow-sm hover:shadow-xl"
+                                            className="p-10 border border-brand-primary/5 bg-brand-sand h-100 transition-all duration-300 hover:bg-brand-forest group rounded-xl shadow-sm hover:shadow-xl"
                                         >
-                                            <div className="text-brand-accent group-hover:text-brand-accent mb-6 transition-colors">{item.icon}</div>
-                                            <h3 className="font-display mb-4 text-brand-primary group-hover:text-white transition-colors">{item.title}</h3>
-                                            <p className="text-gray-600 group-hover:text-white/80 transition-colors">{item.desc}</p>
+                                            <div className="text-brand-accent group-hover:text-brand-offwhite mb-6 transition-colors">{item.icon}</div>
+                                            <h3 className="font-display mb-4 text-brand-primary group-hover:text-brand-offwhite transition-colors">{item.title}</h3>
+                                            <p className="text-brand-slate/70 group-hover:text-brand-offwhite/80 transition-colors">{item.desc}</p>
                                         </motion.div>
                                     </Col>
                                 ))}
                             </Row>
                         </Container>
                     </section>
-                    <section id="testimonials" className="py-24 bg-white overflow-hidden">
+                    <section id="testimonials" className="py-24 bg-brand-offwhite overflow-hidden">
                         <Container>
                             <div className="text-center mb-16">
                                 <motion.h2 {...fadeInUp} className="display-5 font-display text-brand-primary">Patient Experiences</motion.h2>
                                 <div className="h-1 w-20 bg-brand-accent mx-auto mt-4"></div>
                             </div>
-                            <Row className="g-4">
-                                {[
-                                    {
-                                        name: "Rahul Sharma",
-                                        role: "Creative Director",
-                                        content: "Dr. Vaibbhav is truly exceptional. His knowledge of spinal mechanics helped me recover from a chronic back issue in weeks that I had been struggling with for years.",
-                                        rating: 5
-                                    },
-                                    {
-                                        name: "Anita Kapoor",
-                                        role: "Yoga Instructor",
-                                        content: "The most professional chiropractic care I've experienced in Mumbai. The precision in his technique is unmatched, and the South Mumbai clinic is state-of-the-art.",
-                                        rating: 5
-                                    },
-                                    {
-                                        name: "Vikram Malhotra",
-                                        role: "Professional Athlete",
-                                        content: "I've been visiting for sports injury recovery, and the results have been remarkable. Highly recommended for anyone looking for elite level performance enhancement.",
-                                        rating: 5
-                                    }
-                                ].map((testimonial, idx) => (
-                                    <Col key={idx} md={4}>
-                                        <motion.div
-                                            {...fadeInUp}
-                                            whileHover={{ y: -5 }}
-                                            className="p-8 border border-gray-100 bg-gray-50/50 rounded-2xl h-100 relative group"
-                                        >
-                                            <Quote className="absolute top-6 right-6 text-brand-accent/10 group-hover:text-brand-accent/20 transition-colors" size={48} />
-                                            <div className="flex gap-1 mb-6">
-                                                {[...Array(testimonial.rating)].map((_, i) => (
-                                                    <Star key={i} size={16} className="fill-brand-accent text-brand-accent" />
-                                                ))}
-                                            </div>
-                                            <p className="text-gray-700 mb-8 italic leading-relaxed">"{testimonial.content}"</p>
-                                            <div className="mt-auto">
-                                                <h5 className="font-display text-brand-primary mb-1">{testimonial.name}</h5>
-                                                <p className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-0">{testimonial.role}</p>
-                                            </div>
-                                        </motion.div>
-                                    </Col>
-                                ))}
-                            </Row>
+                            <TestimonialCarousel />
+
                         </Container>
                     </section>
 
-                    <section id="locations" className="py-24 bg-white">
+                    <section id="locations" className="py-24 bg-brand-offwhite">
                         <Container>
                             <motion.div {...fadeInUp} className="mb-16">
-                                <h2 className="display-5 font-display mb-4">Strategic Locations</h2>
-                                <p className="lead text-gray-600">Access elite care at our premium centers across Mumbai.</p>
+                                <h2 className="display-5 font-display mb-4 text-brand-primary">Strategic Locations</h2>
+                                <p className="lead text-brand-slate/70">Access elite care at our premium centers across Mumbai.</p>
                             </motion.div>
                             <Row className="g-5">
                                 {[
@@ -354,14 +316,14 @@ const App = () => {
                                     { name: 'Andheri West Center', loc: 'Link Road, Andheri West', img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80' },
                                 ].map((clinic) => (
                                     <Col key={clinic.name} md={6}>
-                                        <motion.div {...fadeInUp} className="bg-white rounded-sm overflow-hidden shadow-xl group border border-gray-100">
+                                        <motion.div {...fadeInUp} className="bg-brand-sand rounded-sm overflow-hidden shadow-xl group border border-brand-slate/5">
                                             <div className="h-64 overflow-hidden relative">
                                                 <img src={clinic.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={clinic.name} />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                                                <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 to-transparent"></div>
                                             </div>
                                             <div className="p-10">
                                                 <h3 className="font-display text-brand-primary text-2xl mb-2">{clinic.name}</h3>
-                                                <p className="text-gray-500 flex items-center gap-2 mb-6">
+                                                <p className="text-brand-slate/60 flex items-center gap-2 mb-6">
                                                     <MapPin size={18} className="text-brand-accent" /> {clinic.loc}
                                                 </p>
                                                 <button onClick={() => openBooking(clinic.name)} className="w-full btn-default">
@@ -413,7 +375,7 @@ const App = () => {
                                 <p className="opacity-75 mb-0">{selectedLocation}</p>
                                 <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-white/50 hover:text-white border-0 bg-transparent text-2xl">&times;</button>
                             </div>
-                            <Modal.Body className="p-8">
+                            <Modal.Body className="p-8 bg-brand-offwhite">
                                 <Form onSubmit={handleBookingSubmit}>
                                     <Row className="g-4">
                                         <Col md={6}>
@@ -514,10 +476,10 @@ const App = () => {
                             </Modal.Body>
                         </motion.div>
                     ) : (
-                        <motion.div key="success" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="p-20 text-center bg-white">
+                        <motion.div key="success" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="p-20 text-center bg-brand-offwhite">
                             <CheckCircle size={80} className="text-brand-accent mx-auto mb-6" />
-                            <h3 className="font-display text-4xl mb-4">Request Sent</h3>
-                            <p className="text-gray-500 mb-10">Our concierge will contact you within 2 hours.</p>
+                            <h3 className="font-display text-4xl mb-4 text-brand-primary">Request Sent</h3>
+                            <p className="text-brand-slate/60 mb-10">Our concierge will contact you within 2 hours.</p>
                             <button className="btn-default btn-highlighted" onClick={() => setShowModal(false)}>Return to Site</button>
                         </motion.div>
                     )}

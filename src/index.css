@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #1e4d3a;
-    --accent-color: #7fb069;
-    --bg-light: #f9fbf9;
-    --text-main: #1a241f;
+    --primary-color: #2F3A36;
+    /* Deep Slate */
+    --accent-color: #9CAF88;
+    /* Sage Green */
+    --bg-light: #F6F8F5;
+    /* Off White */
+    --brand-forest: #6E7F6A;
+    --brand-sand: #E3E0DA;
+    --text-main: #2F3A36;
+    /* Deep Slate replaces black */
 }
 
 body {
@@ -53,7 +59,8 @@ h3,
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--brand-forest);
+    /* Muted Forest for hover as requested */
     transition: all 500ms ease;
     z-index: -1;
 }
@@ -68,13 +75,13 @@ h3,
 
 .btn-highlighted {
     background-color: var(--primary-color);
-    color: #ffffff;
+    color: #F6F8F5;
 }
 
 .btn-highlighted::after {
-    background-color: var(--accent-color);
+    background-color: var(--brand-forest);
 }
 
 .btn-highlighted:hover {
-    color: var(--primary-color) !important;
+    color: #F6F8F5 !important;
 }
