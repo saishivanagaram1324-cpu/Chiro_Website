@@ -37,8 +37,8 @@ const AssistantHelpdesk = ({ onBook }) => {
         - Qualifications: IPHM (International Practitioners of Holistic Medicine) Certified.
         - Expertise: Master of human bio-mechanics, specializing in standard and advanced chiropractic adjustments.
         - Locations: 
-            1. South Mumbai Center (Marine Drive / Colaba area).
-            2. Andheri West Center (Link Road).
+            1. South Mumbai Center: 534, Bombay Mutual Terrace, 2nd Floor, Opera House Sandhurst Bridge, Above Canto Restaurant, Opp Standard Chartered Bank, Mumbai-400007.
+            2. Andheri West Center: A101, Sunrise Building, Above Bank of Maharashtra, Next to Mc Donalds Lokandwala Market, Andheri West, Mumbai-400053.
         - Availability: Weekdays (Monday to Friday).
         
         Knowledge Base for Explanation (General Information Only):
@@ -122,7 +122,7 @@ const AssistantHelpdesk = ({ onBook }) => {
             }]);
         } catch (error) {
             console.error('Chat error:', error);
-            let errorMessage = "I apologize, but I'm experiencing a temporary connection issue. Please feel free to call our concierge directly at +91 99203 27166 for immediate assistance.";
+            let errorMessage = "I apologize, but I'm experiencing a temporary connection issue. Please feel free to call our concierge directly at +91 99203 27166 or email vaibbhavguray@gmail.com for immediate assistance.";
 
             if (error.message === "RATE_LIMIT_EXCEEDED") {
                 errorMessage = "Our elite concierge is handling high volume. Please wait a moment before your next query.";

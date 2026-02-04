@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Navbar, Nav, Modal, Form } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2, Star, Quote } from 'lucide-react';
+import { Phone, Mail, MapPin, Bone, User, CheckCircle, ChevronRight, Menu, Loader2, Star, Quote, Instagram, Facebook, Linkedin, Youtube } from 'lucide-react';
 import DotGrid from './components/DotGrid';
 import { supabase } from './lib/supabase';
 import AssistantHelpdesk from './components/AssistantHelpdesk';
@@ -115,7 +115,7 @@ const App = () => {
                         <div className="d-flex justify-content-between align-items-center text-sm">
                             <div className="d-flex gap-4">
                                 <span className="d-flex align-items-center gap-2"><Phone size={14} className="text-brand-accent" /> +91 99203 27166</span>
-                                <span className="d-flex align-items-center gap-2"><Mail size={14} className="text-brand-accent" /> info@drvaibhavchiro.com</span>
+                                <span className="d-flex align-items-center gap-2"><Mail size={14} className="text-brand-accent" /> vaibbhavguray@gmail.com</span>
                             </div>
                             <div className="bg-brand-accent text-brand-primary px-3 py-1 fw-bold text-xs">
                                 IPHM CERTIFIED CLINIC
@@ -238,23 +238,23 @@ const App = () => {
                                 </Col>
                                 <Col lg={7} className="ps-lg-5">
                                     <motion.div {...fadeInUp}>
-                                        <h6 className="text-brand-accent fw-bold tracking-widest uppercase mb-4">The Expert</h6>
-                                        <h2 className="display-5 font-display mb-6 text-brand-primary">Expertise in Human <br />Bio-Mechanics</h2>
+                                        <h6 className="text-brand-accent fw-bold tracking-widest uppercase mb-4">Mumbai's Recognised Expert</h6>
+                                        <h2 className="display-5 font-display mb-6 text-brand-primary">Expertise in Precision <br />Chiropractic Care</h2>
                                         <p className="lead text-gray-700 mb-6 font-medium italic">
-                                            "My mission is to optimize the human frame through scientific precision."
+                                            "My mission is to help people live a normal life, without worrying about constant pain."
                                         </p>
                                         <p className="mb-8 text-gray-600 leading-relaxed">
-                                            Dr. Vaibbhav Guray integrates international chiropractic standards (Gonstead & Diversified) with deep analytical insight.
+                                            Dr. Vaibbhav Guray integrates international chiropractic standards with detailed problem assessment to treat specific pains, so you can move with less pain and more confidence.
                                         </p>
                                         <Row className="g-4">
                                             {[
                                                 { label: 'Experience', val: '12+ Years' },
-                                                { label: 'Patients', val: '5,000+' },
-                                                { label: 'Status', val: 'IPHM Certified' }
+                                                { label: 'Google Rating', val: '5-Star' },
+                                                { label: 'Globally Recognised', val: 'IPHM Certified' }
                                             ].map((stat) => (
                                                 <Col key={stat.label} xs={4}>
                                                     <div className="border-l-2 border-brand-accent ps-4">
-                                                        <h4 className="text-brand-primary font-bold m-0">{stat.val}</h4>
+                                                        <h4 className="text-brand-primary font-bold m-0 text-nowrap">{stat.val}</h4>
                                                         <small className="uppercase tracking-tighter text-gray-500 font-bold">{stat.label}</small>
                                                     </div>
                                                 </Col>
@@ -311,50 +311,79 @@ const App = () => {
                                 <p className="lead text-brand-slate/70">Access elite care at our premium centers across Mumbai.</p>
                             </motion.div>
                             <Row className="g-5">
-                                {[
-                                    { name: 'South Mumbai Center', loc: 'Marine Drive / Colaba', img: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80' },
-                                    { name: 'Andheri West Center', loc: 'Link Road, Andheri West', img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80' },
-                                ].map((clinic) => (
-                                    <Col key={clinic.name} md={6}>
-                                        <motion.div {...fadeInUp} className="bg-brand-sand rounded-sm overflow-hidden shadow-xl group border border-brand-slate/5">
-                                            <div className="h-64 overflow-hidden relative">
-                                                <img src={clinic.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={clinic.name} />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 to-transparent"></div>
-                                            </div>
-                                            <div className="p-10">
-                                                <h3 className="font-display text-brand-primary text-2xl mb-2">{clinic.name}</h3>
-                                                <p className="text-brand-slate/60 flex items-center gap-2 mb-6">
-                                                    <MapPin size={18} className="text-brand-accent" /> {clinic.loc}
-                                                </p>
-                                                <button onClick={() => openBooking(clinic.name)} className="w-full btn-default">
-                                                    Schedule Slot <ChevronRight size={20} className="inline ms-2" />
-                                                </button>
-                                            </div>
-                                        </motion.div>
-                                    </Col>
-                                ))}
+                                {
+                                    [
+                                        {
+                                            name: 'South Mumbai Center',
+                                            loc: '534, Bombay Mutual Terrace, 2nd Floor, Opera House Sandhurst Bridge, Above Canto Restaurant, Opp Standard Chartered Bank, Mumbai-400007',
+                                            img: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80'
+                                        },
+                                        {
+                                            name: 'Andheri West Center',
+                                            loc: 'A101, Sunrise Building, Above Bank of Maharashtra, Next to Mc Donalds Lokandwala Market, Andheri West, Mumbai-400053',
+                                            img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80'
+                                        },
+                                    ].map((clinic) => (
+                                        <Col key={clinic.name} md={6}>
+                                            <motion.div {...fadeInUp} className="bg-brand-sand rounded-sm overflow-hidden shadow-xl group border border-brand-slate/5">
+                                                <div className="h-64 overflow-hidden relative">
+                                                    <img src={clinic.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={clinic.name} />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 to-transparent"></div>
+                                                </div>
+                                                <div className="p-10">
+                                                    <h3 className="font-display text-brand-primary text-2xl mb-2">{clinic.name}</h3>
+                                                    <p className="text-brand-slate/60 flex items-start gap-2 mb-6">
+                                                        <MapPin size={18} className="text-brand-accent mt-1 flex-shrink-0" />
+                                                        <span className="text-sm">
+                                                            {clinic.loc.split(', ').map((part, i) => (
+                                                                <React.Fragment key={i}>
+                                                                    {part}{i < clinic.loc.split(', ').length - 1 && <br />}
+                                                                </React.Fragment>
+                                                            ))}
+                                                        </span>
+                                                    </p>
+                                                    <button onClick={() => openBooking(clinic.name)} className="w-full btn-default">
+                                                        Schedule Slot <ChevronRight size={20} className="inline ms-2" />
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        </Col>
+                                    ))}
                             </Row>
                         </Container>
                     </section>
                 </main>
 
-                <footer className="bg-brand-primary text-white/50 py-20 border-t border-white/5">
+                <footer className="bg-brand-primary text-white/80 py-20 border-t border-white/5">
                     <Container>
                         <Row className="g-5">
-                            <Col lg={4}>
+                            <Col lg={5}>
                                 <h2 className="font-display text-white font-bold text-3xl mb-6">DR. VAIBBHAV GURAY</h2>
                                 <p className="mb-8 leading-relaxed">Globally trained expertise delivering international standards of chiropractic care.</p>
                             </Col>
-                            <Col lg={3}>
+                            <Col lg={4}>
                                 <h5 className="text-white font-display mb-6">Contact</h5>
                                 <div className="flex flex-col gap-4 text-sm">
-                                    <p className="m-0 flex items-center gap-3"><Mail size={16} /> info@drvaibhavchiro.com</p>
+                                    <p className="m-0 flex items-center gap-3"><Mail size={16} /> vaibbhavguray@gmail.com</p>
                                     <p className="m-0 flex items-center gap-3"><Phone size={16} /> +91 99203 27166</p>
                                 </div>
                             </Col>
-                            <Col lg={5}>
-                                <h5 className="text-white font-display mb-6">Priority Consultation</h5>
-                                <button onClick={() => openBooking('General')} className="btn-default border-white/20 border-1 bg-transparent hover:bg-white/10">Start Your Recovery Journey</button>
+                            <Col lg={3} className="text-lg-end">
+                                <h5 className="text-white font-display mb-6">Social Media</h5>
+                                <div className="d-flex gap-4 justify-content-lg-end">
+                                    <a href="https://www.instagram.com/nourish_transform_shine/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
+                                        <Instagram size={24} />
+                                    </a>
+                                    <a href="https://www.facebook.com/nourishtransformshine/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
+                                        <Facebook size={24} />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/dr-vaibbhav-guray-iphm-5b4378155/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
+                                        <Linkedin size={24} />
+                                    </a>
+                                    <a href="https://www.youtube.com/@nourishtransformshine/videos" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
+                                        <Youtube size={24} />
+                                    </a>
+                                </div>
                             </Col>
                         </Row>
                         <div className="text-center mt-5 pt-4 border-top border-white/10 small">
@@ -409,7 +438,7 @@ const App = () => {
                                                 onChange={handleInputChange}
                                                 type="email"
                                                 className="rounded-none py-3 border-gray-200"
-                                                placeholder="your@email.com"
+                                                placeholder="vaibbhavguray@gmail.com"
                                             />
                                         </Col>
                                         <Col md={6}>
