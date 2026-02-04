@@ -109,7 +109,7 @@ const TestimonialCard = ({ testimonial }) => {
             </div>
 
             <div className="mt-6 pt-4 border-t border-brand-slate/10">
-                <h5 className="font-display text-brand-primary mb-1">{testimonial.name}</h5>
+                <h5 className="font-display text-brand-primary mb-1 capitalize">{testimonial.name.toLowerCase()}</h5>
                 <p className="text-xs text-brand-slate/60 uppercase tracking-widest font-bold mb-0">{testimonial.role}</p>
             </div>
         </motion.div>
