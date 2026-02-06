@@ -6,6 +6,8 @@ import DotGrid from './components/DotGrid';
 import { supabase } from './lib/supabase';
 import AssistantHelpdesk from './components/AssistantHelpdesk';
 import TestimonialCarousel from './components/TestimonialCarousel';
+import { Dock, DockCard } from './components/Dock';
+import AnimatedContent from './components/AnimatedContent';
 
 
 const App = () => {
@@ -107,7 +109,33 @@ const App = () => {
     };
 
     return (
-        <div className="relative min-h-screen bg-brand-offwhite text-brand-slate">
+        <div className="relative min-h-screen bg-brand-offwhite text-brand-slate overflow-hidden">
+            {/* Ambient Background Elements */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                {/* Subtle Dot Pattern Overlay */}
+                <div className="absolute inset-0 z-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#2F3A36 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+
+                {/* Large smooth curve mimicking the reference - subtle white/light overlay */}
+                <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-br from-brand-sand/20 to-transparent blur-[80px] opacity-70" />
+
+                {/* Secondary organic shape */}
+                <div className="absolute bottom-[-10%] left-[-20%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-brand-accent/5 via-brand-sand/10 to-transparent blur-[100px] opacity-60" />
+
+                {/* Accent highlight */}
+                <div className="absolute top-[40%] left-[10%] w-[30vw] h-[30vw] rounded-full bg-brand-primary/5 blur-[120px]" />
+
+                {/* Structural geometric curve overlay */}
+                <svg className="absolute top-0 right-0 h-full w-[60vw] opacity-30 text-brand-sand" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M100 0 C 50 0 50 100 0 100 L 100 100 Z" fill="url(#curveGradient)" />
+                    <defs>
+                        <linearGradient id="curveGradient" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.1" />
+                            <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
             <div className="relative z-10">
                 {/* Topbar */}
                 <div className="bg-brand-primary text-white py-2 d-none d-md-block border-bottom border-brand-accent">
@@ -193,51 +221,49 @@ const App = () => {
                         <Container className="relative z-10 text-brand-primary">
                             <Row>
                                 <Col lg={7}>
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 1 }}
-                                    >
+                                    <AnimatedContent distance={150} direction="horizontal" reverse={true} config={{ tension: 80, friction: 20 }}>
                                         <h1 className="display-3 font-display font-black mb-4">
                                             World-Class Spinal Care <br />
                                             <span className="text-brand-accent underline decoration-brand-primary/10 underline-offset-8">in Mumbai</span>
                                         </h1>
                                         <p className="lead mb-8 text-gray-700 max-w-xl">
                                             Experience precision chiropractic adjustments by Dr. Vaibbhav Guray,
-                                            globally trained to provide non-invasive recovery and elite performance enhancement.
+                                            globally trained to support non-invasive recovery.
                                         </p>
                                         <div className="d-flex flex-wrap gap-4">
+                                            <button className="btn-default btn-highlighted" onClick={() => openBooking('General')}>
+                                                Book a Consultation
+                                            </button>
                                             <button className="btn-default" onClick={() => document.getElementById('locations').scrollIntoView()}>
                                                 Our Clinics
                                             </button>
-                                            <button className="btn-default btn-highlighted" onClick={() => openBooking('General')}>
-                                                Consultation
-                                            </button>
                                         </div>
-                                    </motion.div>
+                                    </AnimatedContent>
                                 </Col>
                             </Row>
                         </Container>
                     </section>
 
                     {/* Rest of the sections without DotGrid background */}
-                    <section id="about" className="py-24 bg-brand-offwhite">
+                    <section id="about" className="py-24 relative">
                         <Container>
                             <Row className="align-items-center">
                                 <Col lg={5} className="mb-12 mb-lg-0">
-                                    <motion.div {...fadeInUp} className="relative">
-                                        <div className="relative z-10 overflow-hidden rounded-sm shadow-2xl">
-                                            <img
-                                                src="/images/Dr.Vaibbhav Pfp.avif"
-                                                alt="Dr. Vaibbhav Guray"
-                                                className="img-fluid w-full"
-                                            />
+                                    <AnimatedContent distance={100} direction="horizontal" reverse={true} config={{ tension: 50, friction: 25 }}>
+                                        <div className="relative">
+                                            <div className="relative z-10 overflow-hidden rounded-sm shadow-2xl">
+                                                <img
+                                                    src="/images/Dr.Vaibbhav Pfp.avif"
+                                                    alt="Dr. Vaibbhav Guray"
+                                                    className="img-fluid w-full"
+                                                />
+                                            </div>
+                                            <div className="absolute top-8 left-8 w-full h-full border-4 border-accent -z-10"></div>
                                         </div>
-                                        <div className="absolute top-8 left-8 w-full h-full border-4 border-accent -z-10"></div>
-                                    </motion.div>
+                                    </AnimatedContent>
                                 </Col>
                                 <Col lg={7} className="ps-lg-5">
-                                    <motion.div {...fadeInUp}>
+                                    <AnimatedContent distance={100} direction="vertical" config={{ tension: 50, friction: 25 }} delay={0.2}>
                                         <h6 className="text-brand-accent fw-bold tracking-widest uppercase mb-4">Mumbai's Recognised Expert</h6>
                                         <h2 className="display-5 font-display mb-6 text-brand-primary">Expertise in Precision <br />Chiropractic Care</h2>
                                         <p className="lead text-gray-700 mb-6 font-medium italic">
@@ -260,7 +286,7 @@ const App = () => {
                                                 </Col>
                                             ))}
                                         </Row>
-                                    </motion.div>
+                                    </AnimatedContent>
                                 </Col>
                             </Row>
                         </Container>
@@ -269,31 +295,49 @@ const App = () => {
                     <section id="treatments" className="py-24 bg-brand-sand/30 text-brand-primary overflow-hidden">
                         <Container>
                             <div className="text-center mb-16">
-                                <motion.h2 {...fadeInUp} className="display-5 font-display">Specialized Treatments</motion.h2>
+                                <motion.h2 {...fadeInUp} className="display-5 font-display">Targeted Care for Real Pain</motion.h2>
                                 <div className="h-1 w-20 bg-brand-accent mx-auto mt-4"></div>
                             </div>
                             <Row className="g-4">
                                 {[
-                                    { icon: <Bone size={40} />, title: 'Spinal Alignment', desc: 'Precise manual manipulation to restore joint function.' },
-                                    { icon: <User size={40} />, title: 'Sports Recovery', desc: 'Advanced protocols for injury prevention.' },
-                                    { icon: <MapPin size={40} />, title: 'Posture Lab', desc: 'Scientific correction of tech-neck imbalances.' },
+                                    { icon: <Bone size={28} />, title: 'Precision Adjustments', desc: 'When your back is locked, stiff, or painful, precise adjustments help restore natural movement and reduce strain.' },
+                                    { icon: <CheckCircle size={28} />, title: 'Pain Prevention & Recovery', desc: 'Focused care designed to reduce recurrence, support recovery, and help your body stay resilient over time.' },
+                                    { icon: <User size={28} />, title: 'Posture Alignment', desc: 'We assess your lifestyle and correct posture patterns that quietly damage your joints through long-term stress.' },
                                 ].map((item, idx) => (
                                     <Col key={idx} md={4}>
                                         <motion.div
                                             {...fadeInUp}
-                                            whileHover={{ y: -10 }}
-                                            className="p-10 border border-brand-primary/5 bg-brand-sand h-100 transition-all duration-300 hover:bg-brand-forest group rounded-xl shadow-sm hover:shadow-xl"
+                                            whileHover={{ y: -8 }}
+                                            className="relative p-8 h-full bg-brand-offwhite rounded-2xl border border-brand-primary/5 shadow-sm transition-all duration-500 hover:shadow-2xl hover:bg-brand-forest hover:border-brand-forest group overflow-hidden"
                                         >
-                                            <div className="text-brand-accent group-hover:text-brand-offwhite mb-6 transition-colors">{item.icon}</div>
-                                            <h3 className="font-display mb-4 text-brand-primary group-hover:text-brand-offwhite transition-colors">{item.title}</h3>
-                                            <p className="text-brand-slate/70 group-hover:text-brand-offwhite/80 transition-colors">{item.desc}</p>
+                                            {/* Decorative circle for hover effect */}
+                                            <div className="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full transition-transform duration-500 group-hover:scale-150"></div>
+
+                                            <div className="relative z-10">
+                                                <div className="w-14 h-14 rounded-xl bg-brand-sand/50 flex items-center justify-center text-brand-primary mb-6 transition-colors duration-300 group-hover:bg-white/10 group-hover:text-brand-accent">
+                                                    {item.icon}
+                                                </div>
+
+                                                <h3 className="font-display text-xl font-bold mb-3 text-brand-primary transition-colors duration-300 group-hover:text-brand-offwhite">
+                                                    {item.title}
+                                                </h3>
+
+                                                <p className="text-brand-slate/70 leading-relaxed transition-colors duration-300 group-hover:text-brand-offwhite/80">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
                                         </motion.div>
                                     </Col>
                                 ))}
                             </Row>
+                            <div className="text-center mt-12">
+                                <motion.p {...fadeInUp} className="lead text-brand-primary font-medium">
+                                    Looking for a specific solution that <span className="italic text-brand-accent">works for you</span>? <button onClick={() => openBooking('General')} className="text-brand-primary underline decoration-brand-accent underline-offset-4 hover:text-brand-accent transition-colors font-bold bg-transparent border-0 p-0 inline">Book a consultation.</button>
+                                </motion.p>
+                            </div>
                         </Container>
                     </section>
-                    <section id="testimonials" className="py-24 bg-brand-offwhite overflow-hidden">
+                    <section id="testimonials" className="py-24 relative overflow-hidden">
                         <Container>
                             <div className="text-center mb-16">
                                 <motion.h2 {...fadeInUp} className="display-5 font-display text-brand-primary">Patient Experiences</motion.h2>
@@ -304,52 +348,107 @@ const App = () => {
                         </Container>
                     </section>
 
-                    <section id="locations" className="py-24 bg-brand-offwhite">
+                    {/* Minimalist Separator Pattern */}
+
+                    {/* Minimalist Separator Pattern */}
+                    <div className="py-12 relative overflow-hidden">
+                        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                            {/* Simple horizontal dot strip from reference */}
+                            <div className="flex gap-8">
+                                {[...Array(5)].map((_, i) => (
+                                    <div key={i} className={`rounded-full bg-brand-primary ${i === 2 ? 'w-3 h-3 opacity-100' : 'w-2 h-2 opacity-60'}`} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <section id="locations" className="py-24 relative">
                         <Container>
-                            <motion.div {...fadeInUp} className="mb-16">
-                                <h2 className="display-5 font-display mb-4 text-brand-primary">Strategic Locations</h2>
-                                <p className="lead text-brand-slate/70">Access elite care at our premium centers across Mumbai.</p>
-                            </motion.div>
-                            <Row className="g-5">
-                                {
-                                    [
-                                        {
-                                            name: 'South Mumbai Center',
-                                            loc: '534, Bombay Mutual Terrace, 2nd Floor, Opera House Sandhurst Bridge, Above Canto Restaurant, Opp Standard Chartered Bank, Mumbai-400007',
-                                            img: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80'
-                                        },
-                                        {
-                                            name: 'Andheri West Center',
-                                            loc: 'A101, Sunrise Building, Above Bank of Maharashtra, Next to Mc Donalds Lokandwala Market, Andheri West, Mumbai-400053',
-                                            img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80'
-                                        },
-                                    ].map((clinic) => (
-                                        <Col key={clinic.name} md={6}>
-                                            <motion.div {...fadeInUp} className="bg-brand-sand rounded-sm overflow-hidden shadow-xl group border border-brand-slate/5">
+                            <div className="text-center mb-16">
+                                <motion.h2 {...fadeInUp} className="display-5 font-display text-brand-primary">Centres of Excellence</motion.h2>
+                                <div className="h-1 w-20 bg-brand-accent mx-auto mt-4 mb-6"></div>
+                                <motion.p {...fadeInUp} className="lead text-brand-slate/70 max-w-2xl mx-auto">
+                                    State-of-the-art facilities designed for precision diagnosis and effective recovery.
+                                    Visit us in South Mumbai or Andheri West.
+                                </motion.p>
+                            </div>
+                            <Dock magnification={1.05} distance={400} className="w-full">
+                                <Row className="g-5 justify-content-center w-full">
+                                    <Col md={6} lg={5}>
+                                        <DockCard className="h-full">
+                                            <motion.div
+                                                {...fadeInUp}
+                                                className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
+                                            >
                                                 <div className="h-64 overflow-hidden relative">
-                                                    <img src={clinic.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={clinic.name} />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 to-transparent"></div>
+                                                    <img
+                                                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
+                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                        alt="South Mumbai Center"
+                                                    />
+                                                    <div className="absolute inset-0 bg-brand-primary/10"></div>
                                                 </div>
-                                                <div className="p-10">
-                                                    <h3 className="font-display text-brand-primary text-2xl mb-2">{clinic.name}</h3>
-                                                    <p className="text-brand-slate/60 flex items-start gap-2 mb-6">
-                                                        <MapPin size={18} className="text-brand-accent mt-1 flex-shrink-0" />
-                                                        <span className="text-sm">
-                                                            {clinic.loc.split(', ').map((part, i) => (
-                                                                <React.Fragment key={i}>
-                                                                    {part}{i < clinic.loc.split(', ').length - 1 && <br />}
-                                                                </React.Fragment>
-                                                            ))}
-                                                        </span>
-                                                    </p>
-                                                    <button onClick={() => openBooking(clinic.name)} className="w-full btn-default">
-                                                        Schedule Slot <ChevronRight size={20} className="inline ms-2" />
+                                                <div className="p-8">
+                                                    <h3 className="font-display text-brand-primary text-2xl mb-4">South Mumbai Center</h3>
+
+                                                    <div className="flex gap-3 mb-8">
+                                                        <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
+                                                        <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
+                                                            <p className="font-bold text-base text-brand-primary mb-1">Opera House, Sandhurst Bridge</p>
+                                                            <p>534, Bombay Mutual Terrace, 2nd Floor</p>
+                                                            <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
+                                                                Above Canto Restaurant,<br />Opp. Standard Chartered Bank
+                                                            </p>
+                                                            <p className="font-medium pt-1">Mumbai - 400007</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <button onClick={() => openBooking('South Mumbai Center')} className="w-full btn-default text-sm py-3">
+                                                        Book at South Mumbai
                                                     </button>
                                                 </div>
                                             </motion.div>
-                                        </Col>
-                                    ))}
-                            </Row>
+                                        </DockCard>
+                                    </Col>
+
+                                    <Col md={6} lg={5}>
+                                        <DockCard className="h-full">
+                                            <motion.div
+                                                {...fadeInUp}
+                                                className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
+                                            >
+                                                <div className="h-64 overflow-hidden relative">
+                                                    <img
+                                                        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
+                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                        alt="Andheri West Center"
+                                                    />
+                                                    <div className="absolute inset-0 bg-brand-primary/10"></div>
+                                                </div>
+                                                <div className="p-8">
+                                                    <h3 className="font-display text-brand-primary text-2xl mb-4">Andheri West Center</h3>
+
+                                                    <div className="flex gap-3 mb-8">
+                                                        <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
+                                                        <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
+                                                            <p className="font-bold text-base text-brand-primary mb-1">Lokhandwala Market</p>
+                                                            <p>A101, Sunrise Building</p>
+                                                            <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
+                                                                Above Bank of Maharashtra,<br />Next to McDonald's
+                                                            </p>
+                                                            <p className="font-medium pt-1">Andheri West, Mumbai - 400053</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <button onClick={() => openBooking('Andheri West Center')} className="w-full btn-default text-sm py-3">
+                                                        Book at Andheri West
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        </DockCard>
+                                    </Col>
+                                </Row>
+                            </Dock>
                         </Container>
                     </section>
                 </main>
@@ -370,20 +469,28 @@ const App = () => {
                             </Col>
                             <Col lg={3} className="text-lg-end">
                                 <h5 className="text-white font-display mb-6">Social Media</h5>
-                                <div className="d-flex gap-4 justify-content-lg-end">
-                                    <a href="https://www.instagram.com/nourish_transform_shine/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
-                                        <Instagram size={24} />
-                                    </a>
-                                    <a href="https://www.facebook.com/nourishtransformshine/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
-                                        <Facebook size={24} />
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/dr-vaibbhav-guray-iphm-5b4378155/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
-                                        <Linkedin size={24} />
-                                    </a>
-                                    <a href="https://www.youtube.com/@nourishtransformshine/videos" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-accent transition-all duration-300">
-                                        <Youtube size={24} />
-                                    </a>
-                                </div>
+                                <Dock magnification={1.5} distance={100} className="flex flex-row items-center gap-4 justify-content-lg-end">
+                                    <DockCard>
+                                        <a href="https://www.instagram.com/nourish_transform_shine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                            <Instagram size={24} />
+                                        </a>
+                                    </DockCard>
+                                    <DockCard>
+                                        <a href="https://www.facebook.com/nourishtransformshine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                            <Facebook size={24} />
+                                        </a>
+                                    </DockCard>
+                                    <DockCard>
+                                        <a href="https://www.linkedin.com/in/dr-vaibbhav-guray-iphm-5b4378155/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                            <Linkedin size={24} />
+                                        </a>
+                                    </DockCard>
+                                    <DockCard>
+                                        <a href="https://www.youtube.com/@nourishtransformshine/videos" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                            <Youtube size={24} />
+                                        </a>
+                                    </DockCard>
+                                </Dock>
                             </Col>
                         </Row>
                         <div className="text-center mt-5 pt-4 border-top border-white/10 small">

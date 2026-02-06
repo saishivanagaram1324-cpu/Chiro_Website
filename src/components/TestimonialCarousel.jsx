@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Dock, DockCard } from './Dock';
 
 const testimonials = [
     {
@@ -142,9 +143,12 @@ const TestimonialCarousel = () => {
     }
 
     return (
-        <div className="relative px-12"
+        <Dock className="relative px-12"
             onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}>
+            onMouseLeave={() => setIsAutoPlaying(true)}
+            magnification={1.05}
+            distance={400}
+        >
             <div className="flex gap-6 items-stretch min-h-[420px]">
                 <AnimatePresence mode="popLayout" initial={false}>
                     {visibleTestimonials.map((testimonial, idx) => (
@@ -161,7 +165,9 @@ const TestimonialCarousel = () => {
                             }}
                             className="flex-1 min-w-0"
                         >
-                            <TestimonialCard testimonial={testimonial} />
+                            <DockCard className="h-full">
+                                <TestimonialCard testimonial={testimonial} />
+                            </DockCard>
                         </motion.div>
                     ))}
                 </AnimatePresence>
@@ -191,7 +197,7 @@ const TestimonialCarousel = () => {
                     />
                 ))}
             </div>
-        </div>
+        </Dock>
     );
 };
 
