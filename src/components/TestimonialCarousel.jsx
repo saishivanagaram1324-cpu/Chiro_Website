@@ -120,7 +120,21 @@ const TestimonialCard = ({ testimonial }) => {
 const TestimonialCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-    const itemsToShow = 3;
+    const [itemsToShow, setItemsToShow] = useState(3);
+
+    useEffect(() => {
+        const updateItemsToShow = () => {
+            if (window.innerWidth < 1024) {
+                setItemsToShow(1);
+            } else {
+                setItemsToShow(3);
+            }
+        };
+
+        updateItemsToShow();
+        window.addEventListener('resize', updateItemsToShow);
+        return () => window.removeEventListener('resize', updateItemsToShow);
+    }, []);
 
     const next = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);

@@ -159,14 +159,20 @@ const App = () => {
                     className={`transition-all duration-300 ${scrolled ? 'bg-brand-offwhite/95 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}
                 >
                     <Container>
-                        <Navbar.Brand href="#home" className="d-flex align-items-center">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" className="me-2">
-                                <path d="M12 2L10 4.5V7.5L12 10L14 7.5V4.5L12 2Z" fill="#9CAF88" />
-                                <path d="M12 10L10 12.5V15.5L12 18L14 15.5V12.5L12 10Z" fill="#9CAF88" />
-                                <path d="M12 18L10 20.5V22H14V20.5L12 18Z" fill="#9CAF88" />
-                                <circle cx="12" cy="12" r="10" stroke="#2F3A36" strokeWidth="1" />
-                            </svg>
-                            <span className="font-display font-bold text-brand-primary tracking-tighter text-2xl">DR. VAIBBHAV GURAY</span>
+                        <Navbar.Brand href="#home" className="d-flex align-items-center group">
+                            <div className="flex items-center gap-3 pl-2 pr-6 py-2 rounded-full bg-brand-sand/20 border border-brand-primary/5 transition-all duration-300 hover:bg-brand-sand/40 hover:border-brand-primary/10">
+                                <div className="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                                    <img
+                                        src="/images/chiro-logo.png"
+                                        alt="Dr. Vaibbhav Guray"
+                                        className="w-6 h-6 object-contain brightness-0 invert opacity-90"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center">
+                                    <span className="font-display font-bold text-brand-primary tracking-wide text-lg leading-none">DR. VAIBBHAV GURAY</span>
+                                    <span className="text-[10px] text-brand-slate/60 font-bold tracking-[0.2em] uppercase pt-1">Chiropractic Excellence</span>
+                                </div>
+                            </div>
                         </Navbar.Brand>
 
                         <Navbar.Toggle aria-controls="navbar-nav" className="border-0 shadow-none">
@@ -242,6 +248,11 @@ const App = () => {
                                 </Col>
                             </Row>
                         </Container>
+
+                        {/* Scroll Down Indicator */}
+                        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer" onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
+                            <img src="/images/scroll-down.png" alt="Scroll Down" className="w-8 h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                        </div>
                     </section>
 
                     {/* Rest of the sections without DotGrid background */}
@@ -278,9 +289,9 @@ const App = () => {
                                                 { label: 'Google Rating', val: '5-Star' },
                                                 { label: 'Globally Recognised', val: 'IPHM Certified' }
                                             ].map((stat) => (
-                                                <Col key={stat.label} xs={4}>
-                                                    <div className="border-l-2 border-brand-accent ps-4">
-                                                        <h4 className="text-brand-primary font-bold m-0 text-nowrap">{stat.val}</h4>
+                                                <Col key={stat.label} xs={12} md={4}>
+                                                    <div className="border-l-2 border-brand-accent ps-4 mb-4 mb-md-0">
+                                                        <h4 className="text-brand-primary font-bold m-0">{stat.val}</h4>
                                                         <small className="uppercase tracking-tighter text-gray-500 font-bold">{stat.label}</small>
                                                     </div>
                                                 </Col>
@@ -350,17 +361,7 @@ const App = () => {
 
                     {/* Minimalist Separator Pattern */}
 
-                    {/* Minimalist Separator Pattern */}
-                    <div className="py-12 relative overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                            {/* Simple horizontal dot strip from reference */}
-                            <div className="flex gap-8">
-                                {[...Array(5)].map((_, i) => (
-                                    <div key={i} className={`rounded-full bg-brand-primary ${i === 2 ? 'w-3 h-3 opacity-100' : 'w-2 h-2 opacity-60'}`} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+
 
                     <section id="locations" className="py-24 relative">
                         <Container>
@@ -372,83 +373,77 @@ const App = () => {
                                     Visit us in South Mumbai or Andheri West.
                                 </motion.p>
                             </div>
-                            <Dock magnification={1.05} distance={400} className="w-full">
-                                <Row className="g-5 justify-content-center w-full">
-                                    <Col md={6} lg={5}>
-                                        <DockCard className="h-full">
-                                            <motion.div
-                                                {...fadeInUp}
-                                                className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
-                                            >
-                                                <div className="h-64 overflow-hidden relative">
-                                                    <img
-                                                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
-                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                                        alt="South Mumbai Center"
-                                                    />
-                                                    <div className="absolute inset-0 bg-brand-primary/10"></div>
+                            <Row className="g-5 justify-content-center w-full">
+                                <Col md={6} lg={5} className="mb-8 md:mb-0">
+                                    <motion.div
+                                        {...fadeInUp}
+                                        className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
+                                    >
+                                        <div className="h-48 md:h-64 overflow-hidden relative">
+                                            <img
+                                                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
+                                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                alt="South Mumbai Center"
+                                            />
+                                            <div className="absolute inset-0 bg-brand-primary/10"></div>
+                                        </div>
+                                        <div className="p-6 md:p-8">
+                                            <h3 className="font-display text-brand-primary text-2xl mb-4">South Mumbai Center</h3>
+
+                                            <div className="flex gap-3 mb-8">
+                                                <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
+                                                <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
+                                                    <p className="font-bold text-base text-brand-primary mb-1">Opera House, Sandhurst Bridge</p>
+                                                    <p>534, Bombay Mutual Terrace, 2nd Floor</p>
+                                                    <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
+                                                        Above Canto Restaurant,<br />Opp. Standard Chartered Bank
+                                                    </p>
+                                                    <p className="font-medium pt-1">Mumbai - 400007</p>
                                                 </div>
-                                                <div className="p-8">
-                                                    <h3 className="font-display text-brand-primary text-2xl mb-4">South Mumbai Center</h3>
+                                            </div>
 
-                                                    <div className="flex gap-3 mb-8">
-                                                        <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
-                                                        <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
-                                                            <p className="font-bold text-base text-brand-primary mb-1">Opera House, Sandhurst Bridge</p>
-                                                            <p>534, Bombay Mutual Terrace, 2nd Floor</p>
-                                                            <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
-                                                                Above Canto Restaurant,<br />Opp. Standard Chartered Bank
-                                                            </p>
-                                                            <p className="font-medium pt-1">Mumbai - 400007</p>
-                                                        </div>
-                                                    </div>
+                                            <button onClick={() => openBooking('South Mumbai Center')} className="w-full btn-default text-sm py-3">
+                                                Book at South Mumbai
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                </Col>
 
-                                                    <button onClick={() => openBooking('South Mumbai Center')} className="w-full btn-default text-sm py-3">
-                                                        Book at South Mumbai
-                                                    </button>
+                                <Col md={6} lg={5}>
+                                    <motion.div
+                                        {...fadeInUp}
+                                        className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
+                                    >
+                                        <div className="h-48 md:h-64 overflow-hidden relative">
+                                            <img
+                                                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
+                                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                alt="Andheri West Center"
+                                            />
+                                            <div className="absolute inset-0 bg-brand-primary/10"></div>
+                                        </div>
+                                        <div className="p-6 md:p-8">
+                                            <h3 className="font-display text-brand-primary text-2xl mb-4">Andheri West Center</h3>
+
+                                            <div className="flex gap-3 mb-8">
+                                                <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
+                                                <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
+                                                    <p className="font-bold text-base text-brand-primary mb-1">Lokhandwala Market</p>
+                                                    <p>A101, Sunrise Building</p>
+                                                    <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
+                                                        Above Bank of Maharashtra,<br />Next to McDonald's
+                                                    </p>
+                                                    <p className="font-medium pt-1">Andheri West, Mumbai - 400053</p>
                                                 </div>
-                                            </motion.div>
-                                        </DockCard>
-                                    </Col>
+                                            </div>
 
-                                    <Col md={6} lg={5}>
-                                        <DockCard className="h-full">
-                                            <motion.div
-                                                {...fadeInUp}
-                                                className="h-100 bg-brand-sand/30 rounded-xl overflow-hidden shadow-lg border border-brand-primary/5 hover:shadow-2xl transition-all duration-300"
-                                            >
-                                                <div className="h-64 overflow-hidden relative">
-                                                    <img
-                                                        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
-                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                                        alt="Andheri West Center"
-                                                    />
-                                                    <div className="absolute inset-0 bg-brand-primary/10"></div>
-                                                </div>
-                                                <div className="p-8">
-                                                    <h3 className="font-display text-brand-primary text-2xl mb-4">Andheri West Center</h3>
-
-                                                    <div className="flex gap-3 mb-8">
-                                                        <MapPin className="text-brand-accent flex-shrink-0 mt-1" size={20} />
-                                                        <div className="text-brand-slate/80 text-sm leading-relaxed space-y-1">
-                                                            <p className="font-bold text-base text-brand-primary mb-1">Lokhandwala Market</p>
-                                                            <p>A101, Sunrise Building</p>
-                                                            <p className="text-brand-slate/60 text-xs uppercase tracking-wide pt-2 border-t border-brand-primary/10 mt-2">
-                                                                Above Bank of Maharashtra,<br />Next to McDonald's
-                                                            </p>
-                                                            <p className="font-medium pt-1">Andheri West, Mumbai - 400053</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <button onClick={() => openBooking('Andheri West Center')} className="w-full btn-default text-sm py-3">
-                                                        Book at Andheri West
-                                                    </button>
-                                                </div>
-                                            </motion.div>
-                                        </DockCard>
-                                    </Col>
-                                </Row>
-                            </Dock>
+                                            <button onClick={() => openBooking('Andheri West Center')} className="w-full btn-default text-sm py-3">
+                                                Book at Andheri West
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                </Col>
+                            </Row>
                         </Container>
                     </section>
                 </main>
@@ -467,30 +462,22 @@ const App = () => {
                                     <p className="m-0 flex items-center gap-3"><Phone size={16} /> +91 99203 27166</p>
                                 </div>
                             </Col>
-                            <Col lg={3} className="text-lg-end">
+                            <Col lg={3} className="text-center text-lg-end">
                                 <h5 className="text-white font-display mb-6">Social Media</h5>
-                                <Dock magnification={1.5} distance={100} className="flex flex-row items-center gap-4 justify-content-lg-end">
-                                    <DockCard>
-                                        <a href="https://www.instagram.com/nourish_transform_shine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
-                                            <Instagram size={24} />
-                                        </a>
-                                    </DockCard>
-                                    <DockCard>
-                                        <a href="https://www.facebook.com/nourishtransformshine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
-                                            <Facebook size={24} />
-                                        </a>
-                                    </DockCard>
-                                    <DockCard>
-                                        <a href="https://www.linkedin.com/in/dr-vaibbhav-guray-iphm-5b4378155/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
-                                            <Linkedin size={24} />
-                                        </a>
-                                    </DockCard>
-                                    <DockCard>
-                                        <a href="https://www.youtube.com/@nourishtransformshine/videos" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
-                                            <Youtube size={24} />
-                                        </a>
-                                    </DockCard>
-                                </Dock>
+                                <div className="flex gap-4 justify-center lg:justify-end">
+                                    <a href="https://www.instagram.com/nourish_transform_shine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                        <Instagram size={24} />
+                                    </a>
+                                    <a href="https://www.facebook.com/nourishtransformshine/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                        <Facebook size={24} />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/dr-vaibbhav-guray-iphm-5b4378155/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                        <Linkedin size={24} />
+                                    </a>
+                                    <a href="https://www.youtube.com/@nourishtransformshine/videos" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-white/80 transition-all duration-300">
+                                        <Youtube size={24} />
+                                    </a>
+                                </div>
                             </Col>
                         </Row>
                         <div className="text-center mt-5 pt-4 border-top border-white/10 small">
