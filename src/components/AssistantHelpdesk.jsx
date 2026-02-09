@@ -262,7 +262,7 @@ const AssistantHelpdesk = ({ onBook }) => {
                 {isOpen ? (
                     <span className="font-bold text-sm group-hover:text-brand-primary transition-colors">Close Assistant</span>
                 ) : (
-                    <span className="font-bold text-sm group-hover:text-brand-primary transition-colors">Elite Support</span>
+                    <span className="font-bold text-sm group-hover:text-brand-primary transition-colors">Support</span>
                 )}
                 <div className="absolute top-1 right-2 w-3 h-3 bg-brand-accent rounded-full border-2 border-brand-primary animate-pulse"></div>
             </motion.button>

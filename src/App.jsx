@@ -162,11 +162,11 @@ const App = () => {
                     <Container>
                         <Navbar.Brand href="#home" className="d-flex align-items-center group mr-auto md:mr-0">
                             <div className="flex items-center gap-3 pl-2 pr-2 md:pr-6 py-2 rounded-full bg-brand-sand/20 border border-brand-primary/5 transition-all duration-300 hover:bg-brand-sand/40 hover:border-brand-primary/10">
-                                <div className="w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                                <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-500 border-2 border-brand-primary/10">
                                     <img
-                                        src="/images/chiro-logo.png"
+                                        src="/images/dr-vaibbhav-final-logo.png"
                                         alt="Dr. Vaibbhav Guray"
-                                        className="w-6 h-6 object-contain brightness-0 invert opacity-90"
+                                        className="w-full h-full object-cover scale-110"
                                     />
                                 </div>
                                 <div className="hidden md:flex flex-col justify-center">
@@ -276,8 +276,15 @@ const App = () => {
                                         </div>
                                     </AnimatedContent>
                                 </Col>
-                                <Col lg={7} className="ps-lg-5">
+                                <Col lg={7} className="ps-lg-5 position-relative">
                                     <AnimatedContent distance={100} direction="vertical" config={{ tension: 50, friction: 25 }} delay={0.2}>
+                                        <div className="absolute top-0 right-0 d-none d-md-block transform translate-x-4 -translate-y-4">
+                                            <img
+                                                src="/images/iphm-logo-no-bg.png"
+                                                alt="IPHM Certified"
+                                                className="w-24 h-24 object-contain drop-shadow-md opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-300"
+                                            />
+                                        </div>
                                         <h6 className="text-brand-accent fw-bold tracking-widest uppercase mb-4">Mumbai's Recognised Expert</h6>
                                         <h2 className="display-5 font-display mb-6 text-brand-primary">Expertise in Precision <br />Chiropractic Care</h2>
                                         <p className="lead text-gray-700 mb-6 font-medium italic">
@@ -372,7 +379,6 @@ const App = () => {
                                 <div className="h-1 w-20 bg-brand-accent mx-auto mt-4"></div>
                             </div>
                             <TestimonialCarousel />
-
                         </Container>
                     </section>
 
