@@ -376,7 +376,34 @@ const App = () => {
                         <Container>
                             <div className="text-center mb-16">
                                 <motion.h2 {...fadeInUp} className="display-5 font-display text-brand-primary">Patient Experiences</motion.h2>
-                                <div className="h-1 w-20 bg-brand-accent mx-auto mt-4"></div>
+                                <div className="h-1 w-20 bg-brand-accent mx-auto mt-4 mb-10"></div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2 }}
+                                    className="inline-flex bg-brand-offwhite px-8 py-4 rounded-2xl shadow-md border border-brand-slate/5 flex-col items-center gap-1"
+                                >
+                                    <div className="flex items-center gap-1 font-display text-2xl font-bold tracking-tight">
+                                        <span className="text-[#4285F4]">G</span>
+                                        <span className="text-[#EA4335]">o</span>
+                                        <span className="text-[#FBBC05]">o</span>
+                                        <span className="text-[#4285F4]">g</span>
+                                        <span className="text-[#34A853]">l</span>
+                                        <span className="text-[#EA4335]">e</span>
+                                        <span className="text-brand-primary ml-2">Reviews</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 mt-1">
+                                        <span className="text-2xl font-bold text-brand-slate">5.0</span>
+                                        <div className="flex gap-1">
+                                            {[...Array(5)].map((_, i) => (
+                                                <Star key={i} size={20} className="fill-[#FBBC05] text-[#FBBC05]" />
+                                            ))}
+                                        </div>
+                                        <span className="text-brand-slate/60 text-sm font-medium">(50+)</span>
+                                    </div>
+                                </motion.div>
                             </div>
                             <TestimonialCarousel />
                         </Container>
